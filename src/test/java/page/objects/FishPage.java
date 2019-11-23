@@ -1,5 +1,6 @@
 package page.objects;
 
+import driver.manager.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,12 +17,8 @@ public class FishPage {
     @FindBy(xpath = "//A[@href='/jpetstore/actions/Order.action?newOrderForm='][text()='Proceed to Checkout']")
     private WebElement proceedToCheckout;
 
-
-    private WebDriver driver;
-
-    public FishPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public FishPage() {
+        PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
     public void clickOnfishID() {

@@ -1,7 +1,7 @@
 package tests;
 
+import driver.manager.DriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -13,9 +13,7 @@ public class TestBase {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver78/chromedriver.exe");
-
-        driver = new ChromeDriver();
+        driver = DriverManager.getWebDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.navigate().to("http://przyklady.javastart.pl/jpetstore/");
@@ -23,8 +21,7 @@ public class TestBase {
 
     @AfterMethod
     public void afterTest() {
-        driver.close();
-        driver.quit();
+        DriverManager.disposeDriver();
     }
 
 }

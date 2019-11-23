@@ -3,20 +3,18 @@ package tests;
 import org.testng.annotations.Test;
 import page.objects.*;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 public class Angelfish extends TestBase {
 
     @Test
     public void asUserTryToLogInWithIncorrectLoginAndPassword() {
 
-        LandingPage landingPage = new LandingPage(driver);
+        LandingPage landingPage = new LandingPage();
         landingPage.clickOnEnterStoreLink();
 
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage();
         mainPage.clickOnEnterFishLink();
 
-        FishPage fishPage = new FishPage(driver);
+        FishPage fishPage = new FishPage();
         fishPage.clickOnfishID();
         fishPage.clickOnAddToCartSmallFish();
         fishPage.clickOnProceedToCheckout();
