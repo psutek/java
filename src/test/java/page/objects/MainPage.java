@@ -4,6 +4,7 @@ import driver.manager.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tests.waits.WaitForElement;
 
 public class MainPage {
 
@@ -15,6 +16,7 @@ public class MainPage {
     }
 
     public void clickOnEnterFishLink() {
+        WaitForElement.waitUntilElementIsClickable(enterFishLink);
         enterFishLink.click();
     }
 
