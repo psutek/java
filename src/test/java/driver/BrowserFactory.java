@@ -8,7 +8,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class BrowserFactory {
 
-    public static WebDriver getBrowser(BrowserType browserTypeK) {
+    public static WebDriver getBrowser(BrowserType browserType) {
         switch (browserType) {
             case CHROME:
                 System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver78/chromedriver.exe");

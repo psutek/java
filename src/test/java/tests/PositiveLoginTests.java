@@ -1,8 +1,10 @@
 package tests;
 
+import driver.manager.DriverUtils;
 import org.testng.annotations.Test;
 import page.objects.*;
 
+import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.Assert.assertTrue;
 
 public class PositiveLoginTests extends TestBase {
@@ -10,11 +12,7 @@ public class PositiveLoginTests extends TestBase {
     @Test
     public void asUserLoginUsingValidLoginAndPassword() {
 
-        LandingPage landingPage = new LandingPage();
-        landingPage.clickOnEnterStoreLink();
-
-        TopMenuPage topMenuPage = new TopMenuPage();
-        topMenuPage.clickOnSignInLink();
+        DriverUtils.navigateToPage(LOGIN_URL);
 
         LoginPage loginPage = new LoginPage();
         loginPage.typeIntoUserNameField("j2ee");
