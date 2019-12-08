@@ -9,12 +9,14 @@
 
 
     <test name="Angel Fish">
+        <parameter name="browser" value="FIREFOX"/>
         <classes>
             <class name="tests.Angelfish"/>
         </classes>
     </test>
 
     <test name="Negative Login Tests">
+        <parameter name="browser" value="CHROME"/>
         <classes>
             <class name="tests.FailedLoginTests"/>
         </classes>
