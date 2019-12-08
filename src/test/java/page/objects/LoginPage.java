@@ -1,20 +1,17 @@
 package page.objects;
 
-
-
+import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import tests.waits.WaitForElement;
-
-
-
+import waits.WaitForElement;
 
 public class LoginPage {
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(LoginPage.class);
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -28,43 +25,50 @@ public class LoginPage {
     @FindBy(css = "#Content ul[class='messages'] li")
     private WebElement messageLabel;
 
-    @FindBy(css = "area[alt='Fish']")
-    private WebElement btnFishImage;
+    @FindBy(css = "#SidebarContent > a:nth-child(1)")
+    private WebElement fishImageButton;
+
 
     public LoginPage() {
-        PageFactory.initElements(driver.manager.DriverManager.getWebDriver(), this);
+        PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    public void typeIntoUserNameField(String username) {
-        WaitForElement.waitUntilElementsVisible(usernameField);
-        usernameField.clear();
+    @Step("Type into User Name Field {username}")
+    public LoginPage typeIntoUserNameField(String username) {
+        WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.sendKeys(username);
-        logger.info("Send keys to usernameField");
+        logger.info("Typed into User Name Field {}", username);
+        return this;
     }
 
-    public void typeIntoPasswordField(String password) {
-        WaitForElement.waitUntilElementsVisible(passwordField);
+    @Step("Type into Password Field {password}")
+    public LoginPage typeIntoPasswordField(String password) {
         passwordField.clear();
         passwordField.sendKeys(password);
-        logger.info("Send keys to passwordField");
+        logger.info("Typed into Password Field {}", password);
+        return this;
     }
 
-    public void clickOnLoginButton() {
-        WaitForElement.waitUntilElementIsClickable(signOnButton);
+    @Step("Click on Login Button")
+    public FooterPage clickOnLoginButton() {
         signOnButton.click();
-        logger.info("Click on signOnButton");
+        logger.info("Clicked on Login Button");
+        return new FooterPage();
     }
 
+    @Step("Getting warning message from Login Page")
     public String getWarningMessage() {
-        WaitForElement.waitUntilElementsVisible(messageLabel);
+        WaitForElement.waitUntilElementIsVisible(messageLabel);
         String warningText = messageLabel.getText();
-        logger.info("Get warning text", warningText);
+        logger.info("Returned warning message was: {}", warningText);
         return warningText;
     }
 
-    public void clickOnFishImageButton() {
-        WaitForElement.waitUntilElementIsClickable(btnFishImage);
-        btnFishImage.click();
-        logger.info("Click on btnFishImage");
+    @Step("Click on clickOnFishImageButton")
+    public LoginPage clickOnFishImageButton(){
+        WaitForElement.waitUntilElementIsVisible(fishImageButton);
+        fishImageButton.click();
+        return this;
     }
+
 }

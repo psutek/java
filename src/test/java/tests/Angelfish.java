@@ -1,10 +1,13 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import page.objects.*;
 
 public class Angelfish extends TestBase {
 
+    @Description("Test błędnego logowania")
     @Test
     public void asUserTryToLogInWithIncorrectLoginAndPassword() {
 

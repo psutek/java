@@ -8,12 +8,12 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import tests.waits.WaitForElement;
+import waits.WaitForElement;
 
 
 public class ShoppingCartPage {
 
-    private Logger logger = LogManager.getLogger();
+    private Logger logger = LogManager.getLogger(ShoppingCartPage.class);
 
     @FindBy(css = "a[href$='newOrderForm=']")
     private WebElement proceedToCheckoutButton;

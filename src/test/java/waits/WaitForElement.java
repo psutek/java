@@ -1,4 +1,4 @@
-package tests.waits;
+package waits;
 
 import driver.manager.DriverManager;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ public class WaitForElement {
     private static WebDriverWait getWebDriverWait(){
         return new WebDriverWait(DriverManager.getWebDriver(), 10);
     }
-    public static void waitUntilElementsVisible(WebElement element){
+    public static void waitUntilElementIsVisible(WebElement element){
         WebDriverWait webDriverWait = getWebDriverWait();
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }

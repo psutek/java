@@ -7,11 +7,11 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import tests.waits.WaitForElement;
+import waits.WaitForElement;
 
 public class MainPage {
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(MainPage.class);
 
     @FindBy(xpath = "//*[@id=\'SidebarContent\']/a[1]/img")
     private WebElement enterFishLink;
