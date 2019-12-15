@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-    Uruchamiać ten plik jeśli wielowątkowaść
-    -->
-
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="All Pet Store Tests" parallel="tests" thread-count="2">
 
-
-    <test name="Angel Fish">
-        <parameter name="browser" value="FIREFOX"/>
-        <classes>
-            <class name="tests.Angelfish"/>
-        </classes>
-    </test>
+    <listeners>
+        <listener class-name="utils.testng.listeners.TestListener"/>
+    </listeners>
 
     <test name="Negative Login Tests">
         <parameter name="browser" value="FIREFOX"/>
@@ -23,14 +14,9 @@
     </test>
 
     <test name="Positive Login Tests">
+        <parameter name="browser" value="CHROME"/>
         <classes>
             <class name="tests.PositiveLoginTests"/>
-        </classes>
-    </test>
-
-    <test name="Shopping Cart Test">
-        <classes>
-            <class name="tests.ShoppingCartTest"/>
         </classes>
     </test>
 

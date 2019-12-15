@@ -4,16 +4,16 @@ import driver.manager.DriverUtils;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import page.objects.LoginPage;
+import utils.testng.listeners.RetryAnalyzer;
 
 import static navigation.ApplicationURLs.LOGIN_URL;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class FailedLoginTests extends TestBase {
 
     @Issue("DEFECT-1")
     @TmsLink("ID-1")
     @Severity(SeverityLevel.NORMAL)
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("The goal of this test is to log in using not proper username and password" +
             " and check if warning message Invalid username or password is displayed")
     public void asUserTryToLogInWithIncorrectLoginAndPassword() {
@@ -24,9 +24,8 @@ public class FailedLoginTests extends TestBase {
                 .typeIntoUserNameField("NotExistingLogin")
                 .typeIntoPasswordField("NotProperPassword")
                 .clickOnLoginButton();
-        String warningMessage = loginPage.getWarningMessage();
-
-        assertEquals("Invalid username or password. Signon failed.", warningMessage);
+        loginPage
+                .assertThatWarningIsDisplayed("Invalid username or password. Signon failed.");
     }
 
 }

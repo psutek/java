@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import page.objects.LoginPage;
 
 import static navigation.ApplicationURLs.LOGIN_URL;
-import static org.testng.Assert.assertTrue;
 
 public class PositiveLoginTests extends TestBase {
 
@@ -22,13 +21,33 @@ public class PositiveLoginTests extends TestBase {
         DriverUtils.navigateToPage(LOGIN_URL);
 
         LoginPage loginPage = new LoginPage();
-        boolean isBannerAfterLoginDisplayed = loginPage
+        loginPage
                 .typeIntoUserNameField("j2ee")
                 .typeIntoPasswordField("j2ee")
                 .clickOnLoginButton()
-                .isBannerAfterLoginDisplayed();
+                .package page.objects;
 
-        assertTrue(isBannerAfterLoginDisplayed);
+import io.qameta.allure.Step;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import waits.WaitForElement;
+
+import static generic.assertions.AssertWebElement.assertThat;
+
+        public class FooterPage extends BasePage {
+
+            @FindBy(css = "#Banner img[src*='dog']")
+            private WebElement bannerAfterLoginLogo;
+
+            @Step("Assert that element dog banner is displayed")
+            public FooterPage assertThatDogBannerIsDisplayed() {
+                log().info("Checking if dog banner is displayed");
+                WaitForElement.waitUntilElementIsVisible(bannerAfterLoginLogo);
+                assertThat(bannerAfterLoginLogo).isDisplayed();
+                return this;
+            }
+
+        }assertThatDogBannerIsDisplayed();
     }
 
 }
