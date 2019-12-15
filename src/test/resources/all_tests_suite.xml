@@ -5,7 +5,7 @@
     -->
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="All Pet Store Tests" parallel="tests" thread-count="4">
+<suite name="All Pet Store Tests" parallel="tests" thread-count="2">
 
 
     <test name="Angel Fish">
@@ -16,7 +16,7 @@
     </test>
 
     <test name="Negative Login Tests">
-        <parameter name="browser" value="CHROME"/>
+        <parameter name="browser" value="FIREFOX"/>
         <classes>
             <class name="tests.FailedLoginTests"/>
         </classes>
